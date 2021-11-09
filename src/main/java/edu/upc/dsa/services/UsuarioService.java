@@ -98,7 +98,7 @@ public class UsuarioService {
 
     }
 
-    @POST
+    @PUT
     @ApiOperation(value = "Pasar por punto interes", notes = "Pasar por punto interes")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response= PasarPuntoInteresTO.class),
