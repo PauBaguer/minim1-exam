@@ -58,6 +58,8 @@ public class UsuarioManagerTest {
         UsuarioInfoTO u = UsuarioManagerImpl.getInstance().userInfo("Pau");
         UsuarioInfoTO test = new UsuarioInfoTO(new Usuario("Pau", "Baguer", "a@a.a"));
 
+        Assert.assertNull(UsuarioManagerImpl.getInstance().userInfo("Manel")); //test error
+
         Assert.assertEquals(test.getNombre(), u.getNombre());
         Assert.assertEquals(test.getApellido(), u.getApellido());
         Assert.assertEquals(test.getMail(), u.getMail());

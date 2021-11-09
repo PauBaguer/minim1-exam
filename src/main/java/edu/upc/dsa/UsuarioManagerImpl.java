@@ -4,6 +4,7 @@ import edu.upc.dsa.TO.UsuarioInfoTO;
 import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,9 +27,9 @@ public class UsuarioManagerImpl implements UsuarioManager{
     //TODO test if user existeix a hashmap
     @Override
     public void addUser(Usuario u) {
-        logger.info("Added usuario: ");
-        logger.info(u);
+        logger.info("addUser(" + u+ ")");
         usuarioHashMap.put(u.getNombre(), u);
+        logger.info("addUser(" + u+ "): " + usuarioHashMap);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class UsuarioManagerImpl implements UsuarioManager{
 
         List<Usuario> l = new LinkedList<>(usuarioHashMap.values());
         l.sort(Usuario::compareTo);
-        logger.info("userList_byName(): "+l);
+        logger.info("userList_byName(): "+ Arrays.toString(l.toArray()));
         return l;
     }
 
