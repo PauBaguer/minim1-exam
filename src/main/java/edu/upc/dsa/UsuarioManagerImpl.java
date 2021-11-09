@@ -1,5 +1,6 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.TO.UsuarioInfoTO;
 import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
 
@@ -22,7 +23,7 @@ public class UsuarioManagerImpl implements UsuarioManager{
         return instance;
     }
 
-    //TODO test if user existes un hashmap
+    //TODO test if user existeix a hashmap
     @Override
     public void addUser(Usuario u) {
         logger.info("Added usuario: ");
@@ -41,12 +42,13 @@ public class UsuarioManagerImpl implements UsuarioManager{
     }
 
     @Override
-    public Usuario userInfo(String name) {
+    public UsuarioInfoTO userInfo(String name) {
         logger.info("userInfo(" + name +")");
         Usuario u = usuarioHashMap.get(name);
         if (u==null){ logger.error("userInfo(" + name +"): User not found"); return null;}
-        logger.info("userInfo(" + name +"): " + usuarioHashMap.get(name));
-        return u;
+        UsuarioInfoTO uTO = new UsuarioInfoTO(u);
+        logger.info("userInfo(" + name +"): " + uTO);
+        return uTO;
     }
 
     @Override
@@ -90,6 +92,10 @@ public class UsuarioManagerImpl implements UsuarioManager{
         logger.info("userList_byPuntosInteresRecorridos(): " + l);
         return l;
 
+    }
+
+    public HashMap<String, Usuario> getUsuarioHashMap() {
+        return usuarioHashMap;
     }
 
     public void cleanCache(){

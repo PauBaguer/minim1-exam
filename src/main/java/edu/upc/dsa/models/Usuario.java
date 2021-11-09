@@ -5,14 +5,18 @@ import java.util.List;
 
 public class Usuario implements Comparable<Usuario>{
     private String nombre;
+    private String apellido;
+    private String mail;
     private List<String> puntosInteresList;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre) {
+    public Usuario(String nombre, String apellido, String mail) {
         this();
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
         this.puntosInteresList = new LinkedList<>();
     }
 
@@ -39,5 +43,21 @@ public class Usuario implements Comparable<Usuario>{
 
     public void setPuntosInteresList(List<String> puntosInteresList) {
         this.puntosInteresList = puntosInteresList;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

@@ -1,5 +1,6 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.TO.UsuarioInfoTO;
 import edu.upc.dsa.models.Usuario;
 import org.junit.After;
 import org.junit.Assert;
@@ -17,10 +18,10 @@ public class UsuarioManagerTest {
 //TODO TEST ERROR MESSAGES, AND ADD EXCEPTIONS, FATAL??
     @Before
     public void setUp(){
-        u1 = new Usuario("Pau");
-        u2 = new Usuario("Anna");
-        u3 = new Usuario("Maria");
-        u4 = new Usuario("Jana");
+        u1 = new Usuario("Pau", "Baguer", "a@a.a");
+        u2 = new Usuario("Anna", "Granes", "b@b.b");
+        u3 = new Usuario("Maria", "Baguer", "c@c.c");
+        u4 = new Usuario("Jana", "Baguer", "d@d.d");
 
 
         UsuarioManagerImpl.getInstance().addUser(u1);
@@ -39,17 +40,27 @@ public class UsuarioManagerTest {
 
     @Test
     public void testPassarPuntoInteres(){
-        //Tambien testea userInfo()
 
         String name = "Pau";
         UsuarioManagerImpl.getInstance().pasarPuntoInteres("CasillaA", name);
         String[] arr = {"CasillaA"};
 
-        Assert.assertArrayEquals(UsuarioManagerImpl.getInstance().userInfo(name).getPuntosInteresList().toArray(), arr);
+        Assert.assertArrayEquals(UsuarioManagerImpl.getInstance().getUsuarioHashMap().get(name).getPuntosInteresList().toArray(), arr);
 
         UsuarioManagerImpl.getInstance().pasarPuntoInteres("CasillaB", name);
         String[] arr2 = {"CasillaA", "CasillaB"};
-        Assert.assertArrayEquals(UsuarioManagerImpl.getInstance().userInfo(name).getPuntosInteresList().toArray(), arr2);
+        Assert.assertArrayEquals(UsuarioManagerImpl.getInstance().getUsuarioHashMap().get(name).getPuntosInteresList().toArray(), arr2);
+
+    }
+
+    @Test
+    public void testInfoUsuario(){
+        UsuarioInfoTO u = UsuarioManagerImpl.getInstance().userInfo("Pau");
+        UsuarioInfoTO test = new UsuarioInfoTO(new Usuario("Pau", "Baguer", "a@a.a"));
+
+        Assert.assertEquals(test.getNombre(), u.getNombre());
+        Assert.assertEquals(test.getApellido(), u.getApellido());
+        Assert.assertEquals(test.getMail(), u.getMail());
 
     }
 
